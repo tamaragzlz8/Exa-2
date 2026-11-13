@@ -6,7 +6,7 @@ namespace Juegoteca.Tests;
 
 public class GestorVideojuegosTests
 {
-    private readonly GestorVideojuegos _gestor;
+    public readonly GestorVideojuegos _gestor;
 
     // xUnit crea una instancia nueva de la clase por cada prueba:
     // el constructor deja el gestor con los 8 juegos de ejemplo.

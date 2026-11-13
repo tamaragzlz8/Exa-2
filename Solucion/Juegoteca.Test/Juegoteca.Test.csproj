@@ -15,6 +15,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Juegoteca.Biblioteca\Juegoteca.Biblioteca.csproj" />
+    <ProjectReference Include="..\Juegoteca.Consola\Juegoteca.Consola.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Using Include="Xunit" />
   </ItemGroup>
 
