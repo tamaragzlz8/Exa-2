@@ -17,5 +17,19 @@ namespace Juegoteca.Biblioteca.Modelos {
         public override string ToString() {
             return $"{Titulo} - {Estudio} ({HorasJuego} h)";
         }
+        public override bool Equals(object obj)
+        {
+            if (obj is Videojuego otro)
+            {
+                return string.Equals(Titulo, otro.Titulo, StringComparison.OrdinalIgnoreCase) &&
+                       string.Equals(Estudio, otro.Estudio, StringComparison.OrdinalIgnoreCase);
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Titulo?.ToLowerInvariant(), Estudio?.ToLowerInvariant());
+        }
     }
 }

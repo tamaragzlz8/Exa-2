@@ -3,7 +3,7 @@ using Juegoteca.Biblioteca.Modelos;
 //Correcto
 namespace Juegoteca.Biblioteca.Gestores;
 
-public class GestorVideojuegos 
+public class GestorVideojuegos : IGestorVideojuegos
 {
     public List<Videojuego> JuegosDisponibles { get; }
 
@@ -14,6 +14,7 @@ public class GestorVideojuegos
 
     public void AgregarJuego(Videojuego juego)
     {
+        ArgumentNullException.ThrowIfNull(juego);
         if (!JuegosDisponibles.Any(j => j.Titulo.Equals(juego.Titulo,StringComparison.OrdinalIgnoreCase)))
         {
             JuegosDisponibles.Add(juego);
@@ -46,5 +47,21 @@ public class GestorVideojuegos
     {
         JuegosDisponibles.Clear();
     }
-   
+    public void QuickSort(List<Videojuego> lista)
+    {
+        var ordenamiento = new Juegoteca.Biblioteca.Gestores.QuickSort();
+        ordenamiento.OrdenarQuickSort(lista);
+    }
+
+    public List<Videojuego> MergeSort(List<Videojuego> lista)
+    {
+        var ordenamiento = new Juegoteca.Biblioteca.Gestores.MergeSort();
+        return ordenamiento.OrdenarMergeSort(lista); // Ajusta al nombre exacto del método en tu clase MergeSort
+    }
+
+    public int BusquedaBinaria(string titulo)
+    {
+        return Juegoteca.Biblioteca.Gestores.BusquedaBinaria.BuscarPorTitulo(JuegosDisponibles, titulo);
+    }
+
 }

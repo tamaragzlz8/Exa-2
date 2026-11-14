@@ -12,7 +12,7 @@ namespace Juegoteca.Consola {
             var exportador = new ExportadorTxt();
             var servicio = new ServicioVideojuegos(gestor, exportador);
 
-            // Añadir los 8 juegos de ejemplo requeridos[cite: 16]
+            // Añadir los 8 juegos de ejemplo requeridos
             gestor.AgregarJuego(new Videojuego("Celeste", "Maddy Makes Games", 8));
             gestor.AgregarJuego(new Videojuego("Hollow Knight", "Team Cherry", 40));
             gestor.AgregarJuego(new Videojuego("Minecraft", "Mojang", 100));
@@ -75,7 +75,7 @@ namespace Juegoteca.Consola {
                 Console.Write("Seleccione una opción: ");
 
                 string input = Console.ReadLine();
-                if (!int.TryParse(input, out int opcion)) [cite: 19]
+                if (!int.TryParse(input, out int opcion)) 
                 {
                     Console.WriteLine("Entrada inválida. Por favor, ingrese un número del 1 al 8.");
                     continue;
@@ -134,10 +134,10 @@ namespace Juegoteca.Consola {
                         break;
 
                     case 3:
-                        // Búsqueda binaria en catálogo[cite: 17]
+                        // Búsqueda binaria en catálogo
                         Console.Write("Ingrese el título del videojuego a buscar: ");
                         string tituloBusqueda = Console.ReadLine();
-                        int indiceEncontrado = gestor.BusquedaBinaria(tituloBusqueda);
+                        int indiceEncontrado = BusquedaBinaria.BuscarPorTitulo(gestor.JuegosDisponibles, tituloBusqueda);
 
                         if (indiceEncontrado >= 0) {
                             var juegoEncontrado = gestor.JuegosDisponibles[indiceEncontrado];
@@ -152,24 +152,24 @@ namespace Juegoteca.Consola {
                                 }
                             }
                         } else {
-                            Console.WriteLine("No se encontraron coincidencias con ese título en el catálogo."); [cite: 17]
+                            Console.WriteLine("No se encontraron coincidencias con ese título en el catálogo."); 
                         }
                         break;
 
                     case 4:
-                        // Crear nueva colección[cite: 17]
+                        // Crear nueva colección
                         Console.Write("Ingrese el nombre de la nueva colección: ");
                         string nuevaCol = Console.ReadLine();
                         try {
                             usuarioActual.CrearColeccion(nuevaCol);
                             Console.WriteLine($"Colección '{nuevaCol}' creada exitosamente.");
                         } catch (InvalidOperationException ex) {
-                            Console.WriteLine($"Error: {ex.Message}"); [cite: 17, 19]
+                            Console.WriteLine($"Error: {ex.Message}"); 
                         }
                         break;
 
                     case 5:
-                        // Cambiar de colección actual[cite: 18]
+                        // Cambiar de colección actual
                         Console.WriteLine("Colecciones disponibles de su usuario:");
                         foreach (var colName in usuarioActual.Colecciones.Keys) {
                             Console.WriteLine($"- {colName}");
@@ -185,13 +185,13 @@ namespace Juegoteca.Consola {
                         break;
 
                     case 6:
-                        // Ver mis colecciones[cite: 18]
+                        // Ver mis colecciones
                         Console.WriteLine("\n--- SUS COLECCIONES ---");
                         usuarioActual.MostrarColecciones();
                         break;
 
                     case 7:
-                        // Exportar a .txt[cite: 18]
+                        // Exportar a .txt
                         Console.Write("Ingrese la ruta del archivo .txt (ej. colecciones.txt): ");
                         string ruta = Console.ReadLine();
                         if (string.IsNullOrWhiteSpace(ruta)) {

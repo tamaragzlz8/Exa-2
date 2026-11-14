@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Juegoteca.Biblioteca.Modelos {
     public class Usuario {
-        string Nombre { get; }
+        public string Nombre { get; set; }
         public Dictionary<string, List<Videojuego>> Colecciones { get; }
 
         public Usuario(string nombre) {
@@ -14,15 +14,18 @@ namespace Juegoteca.Biblioteca.Modelos {
 
 
         public void CrearColeccion(string nombre) {
+            
             if (Colecciones.ContainsKey(nombre)) {
-                throw new InvalidOperationException();
+                throw new InvalidOperationException("La colección ya existe");
             }
-            Colecciones[nombre] = new List<Videojuego>();
+            //Agregarla al diccionario con una nueva lista
+            Colecciones.Add(nombre, new List<Videojuego>());
 
         }
 
         public void AgregarJuegoAColeccion(string nombreColeccion, Videojuego juego) {
-            if (Colecciones.ContainsKey(nombreColeccion)) {
+            ArgumentNullException.ThrowIfNull(juego);
+            if (!Colecciones.ContainsKey(nombreColeccion)) {
                 throw new KeyNotFoundException();
             }
             var lista = Colecciones[nombreColeccion];
@@ -53,7 +56,7 @@ namespace Juegoteca.Biblioteca.Modelos {
 
         public void MostrarColecciones() {
             if (Colecciones.Count == 0) {
-                Console.WriteLine("El usuario no tiene colecciones creadas.");
+                Console.WriteLine("No hay colecciones registradas");
                 return;
             }
 
